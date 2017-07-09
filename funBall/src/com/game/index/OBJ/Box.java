@@ -10,8 +10,6 @@ public class Box extends Objects{
 
 	public Box(int x, int y , ID id) {
 		super(x, y, id);
-		
-		vleX = 1;
 	}
 
 	public void tick() {
@@ -23,12 +21,12 @@ public class Box extends Objects{
 	public void render(Graphics g) {
 		
 		g.setColor(Color.green);
-		g.fillRect(x, y, 32, 32);
+		g.fillRect(x, y, 8, 8);
 		
 	}
 
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 32, 32);
+		return new Rectangle(x, y, 8, 8);
 	}
 	
 	

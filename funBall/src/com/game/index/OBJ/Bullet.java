@@ -16,23 +16,21 @@ public class Bullet extends Objects{
 		super(x, y, id);
 		this.handler = handler;
 		
-		vleX = (mX - x)/ 10; 		
-		vleY = (mY - y)/ 10;
+		double a = Math.sqrt(Math.pow(mX-x, 2) + Math.pow(mY - y, 2 ));
 		
-		if (vleX == 0 && vleY == 0)
-			vleX = 2;
+		double thirdpointx = a + x, thirdpointy = 0 + y;
 		
+		double b = Math.sqrt(Math.pow(mX-thirdpointx, 2) + Math.pow(mY - thirdpointy, 2 ));
 		
+		double c = Math.sqrt(Math.pow(thirdpointx - x, 2) + Math.pow(thirdpointy - y, 2 ));
+				
+		double win =  Math.acos((b * b - c * c - a * a) / (-2 * c * a));
 		
-		System.out.println("Maus");
-		System.out.println(mX);
-		System.out.println(mY);
-		System.out.println("Camera");
-		System.out.println(x);
-		System.out.println(y);
-		System.out.println("Länge");
-		System.out.println(vleX);
-		System.out.println(vleY);
+		if (mY - y < 0)
+			  win = -win;
+		
+		vleX = (int)(6*Math.cos(win)); 		
+		vleY = (int)(6*Math.sin(win));
 	}
 
 	public void tick() {

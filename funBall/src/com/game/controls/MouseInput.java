@@ -21,16 +21,16 @@ public class MouseInput extends MouseAdapter{
 	}
 	
 public void mousePressed(MouseEvent e) {
-	int mX  = (int) (e.getX());
-	int mY = (int) (e.getY());
+	int mX  = (int) (e.getX() + camera.getX());
+	int mY = (int) (e.getY() + camera.getY());
 	
 	for (int i = 0; i<handler.object.size(); i++)	{
 		
 		Objects tempObj = handler.object.get(i); 
 		
 		if (tempObj.getId() == ID.player)	{
-			
-			handler.addobj(new Bullet(tempObj.getX() , tempObj.getX(), ID.Bullet, handler, mX , mY));
+			if ((int)Math.sqrt(Math.pow(mX- (int)(tempObj.getX() + 12), 2) + Math.pow(mY - (int)(tempObj.getY() + 12), 2 )) != 0)
+			  handler.addobj(new Bullet((int)tempObj.getX() + 12 , (int)tempObj.getY() + 12, ID.Bullet, handler, mX , mY));
 		}
 		
 	}
