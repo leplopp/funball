@@ -1,0 +1,34 @@
+package com.game.index.OBJ;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import com.game.index.Objects;
+
+public class Box extends Objects{
+
+	public Box(int x, int y) {
+		super(x, y);
+	}
+
+	@Override
+	public void tick() {
+		
+	}
+
+	@Override
+	public void render(Graphics g) {
+		
+		g.setColor(Color.cyan);
+		
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		return null;
+	}
+	
+	
+
+}

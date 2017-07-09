@@ -1,0 +1,25 @@
+package com.game.index.OBJ;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import com.game.util.ID;
+
+public class Bullet extends Objects{
+
+	public Bullet(int x, int y, ID id) {
+		super(x, y, id);
+	}
+
+	public void tick() {
+		
+	}
+	public void render(Graphics g) {
+		
+	}
+	
+	public Rectangle getBounds() {
+		return null;
+	}
+
+}

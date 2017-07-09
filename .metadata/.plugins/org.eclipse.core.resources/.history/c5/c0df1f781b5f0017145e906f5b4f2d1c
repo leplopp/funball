@@ -1,0 +1,19 @@
+package com.game.index;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+public abstract class Objects {
+	
+	protected int x, y;
+	protected float vleX = 0, vleY = 0;
+	
+	public Objects(int x, int y)	{
+		this.x = x;
+		this.y = y;
+	}
+	
+	public abstract void tick();
+	public abstract void render(Graphics g);
+	public abstract Rectangle getBoxing();
+}

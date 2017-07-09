@@ -1,0 +1,11 @@
+package com.game.index;
+
+import java.awt.image.BufferedImage;
+
+public class LevelLoader extends game{
+	
+	private void LoadLevel(BufferedImage image)	{
+		
+	}
+
+}

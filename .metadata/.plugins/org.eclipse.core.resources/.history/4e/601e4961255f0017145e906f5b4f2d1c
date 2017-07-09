@@ -1,0 +1,24 @@
+package com.game.controls;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import com.game.Handlers.Handler;
+
+public class keyinput extends KeyAdapter{
+	
+	Handler handler;
+	
+	public keyinput(Handler handler)	{
+		this.handler = Handler;
+	}
+	
+	public void kypressed(KeyEvent EV)	{
+		
+	}
+	
+	public void keyreleased(KeyEvent EV)	{
+		
+	}
+
+}

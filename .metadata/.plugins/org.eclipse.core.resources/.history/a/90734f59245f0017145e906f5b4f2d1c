@@ -1,0 +1,36 @@
+package com.game.index.OBJ;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import com.game.util.ID;
+
+public class Box extends Objects{
+
+	public Box(int x, int y , ID id) {
+		super(x, y, id);
+		
+		vleX = 1;
+	}
+
+	public void tick() {
+		x += vleX;
+		y += vleY;
+		
+	}
+
+	public void render(Graphics g) {
+		
+		g.setColor(Color.green);
+		g.fillRect(x, y, 32, 32);
+		
+	}
+
+	public Rectangle getBounds() {
+		return null;
+	}
+	
+	
+
+}

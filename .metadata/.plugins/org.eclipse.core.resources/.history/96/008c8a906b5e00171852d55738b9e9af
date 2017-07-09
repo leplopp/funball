@@ -1,0 +1,8 @@
+package com.game.index.graphics;
+
+public class Render {
+	
+	public final int width;
+	public final int heigth;
+
+}

@@ -1,0 +1,11 @@
+package com.game.index;
+
+public class Camera {
+	
+	private float x, y;
+	
+	public Camera(float x, float y)	 {
+		
+	}
+
+}

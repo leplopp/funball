@@ -1,0 +1,51 @@
+package com.game.index.OBJ;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+public abstract class Objects {
+	
+	protected int x, y;
+	protected float vleX = 0, vleY = 0;
+	
+	public Objects(int x, int y)	{
+		this.x = x;
+		this.y = y;
+	}
+	
+	public abstract void tick();
+	public abstract void render(Graphics g);
+	public abstract Rectangle getBounds();
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public float getVleX() {
+		return vleX;
+	}
+
+	public void setVleX(float vleX) {
+		this.vleX = vleX;
+	}
+
+	public float getVleY() {
+		return vleY;
+	}
+
+	public void setVleY(float vleY) {
+		this.vleY = vleY;
+	}
+}

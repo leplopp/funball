@@ -1,0 +1,12 @@
+package com.game.controls;
+
+import java.awt.event.KeyAdapter;
+
+import com.game.Handlers.Handler;
+
+public class StartMenu extends KeyAdapter{
+	
+	public StartMenu()	{
+	}
+
+}

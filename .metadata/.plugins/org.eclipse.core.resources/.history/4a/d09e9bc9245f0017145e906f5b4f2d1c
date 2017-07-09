@@ -1,0 +1,35 @@
+package com.game.Handlers;
+
+import java.awt.Graphics;
+import java.util.LinkedList;
+
+import com.game.index.OBJ.Objects;
+
+public class Handler {
+	
+	LinkedList<Objects> object = new LinkedList<Objects>();
+	
+	public void tick()	{
+		for (int i = 0; i <object.size(); i++)	{
+			Objects tempobj = object.get(i);
+			
+			tempobj.tick();
+		}
+	}
+	
+	public void render(Graphics g)	{
+		for (int i = 0; i <object.size(); i++)	{
+			Objects tempobj = object.get(i);
+			
+			tempobj.render(g);
+		}
+	}
+	
+	public void addobj(Objects tmpobj)	{
+		object.add(tmpobj);
+	}
+	
+	public void removeobj(Objects tmpobj)	{
+		object.remove(tmpobj);
+	}
+}

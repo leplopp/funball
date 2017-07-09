@@ -1,0 +1,52 @@
+package com.game.controls;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import com.game.Handlers.Handler;
+import com.game.index.OBJ.Objects;
+import com.game.util.ID;
+
+public class keyinput extends KeyAdapter{
+	
+	Handler handler;
+	
+	public keyinput(Handler handler)	{
+		this.handler = handler;
+	}
+	
+	public void keypressed(KeyEvent EV)	{
+		int key = EV.getKeyCode();
+		
+		for (int i = 0; i <handler.object.size(); i++)	{
+			Objects tempopj = handler.object.get(i);
+			
+			if (tempopj.getId() == ID.player)	{
+				if(key == KeyEvent.VK_W) handler.setUp(true);
+				if(key == KeyEvent.VK_S) handler.setDown(true);
+				if(key == KeyEvent.VK_A) handler.setLeft(true);
+				if(key == KeyEvent.VK_D) handler.setRight(true);
+				
+			}
+		}
+		
+	}
+	
+	public void keyreleased(KeyEvent EV)	{
+		int key = EV.getKeyCode();
+		
+		for (int i = 0; i <handler.object.size(); i++)	{
+			Objects tempopj = handler.object.get(i);
+			
+			if (tempopj.getId() == ID.player)	{
+				if(key == KeyEvent.VK_W) handler.setUp(false);
+				if(key == KeyEvent.VK_S) handler.setDown(false);
+				if(key == KeyEvent.VK_A) handler.setLeft(false);
+				if(key == KeyEvent.VK_D) handler.setRight(false);
+				
+			}
+		}
+		
+	}
+
+}

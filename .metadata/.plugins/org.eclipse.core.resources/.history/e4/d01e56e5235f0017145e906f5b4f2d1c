@@ -1,0 +1,12 @@
+package com.game.controls;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class keyinput extends KeyAdapter{
+	
+	public void kypressed(KeyEvent EV)	{
+		
+	}
+
+}

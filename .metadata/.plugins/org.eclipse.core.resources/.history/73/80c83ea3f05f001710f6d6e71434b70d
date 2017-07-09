@@ -1,0 +1,22 @@
+package com.game.controls;
+
+import java.awt.event.KeyAdapter;
+
+public class StartMenu{
+	
+	public static void main(String[] args) {
+	    // Local variable
+	 
+	//**********************************************************
+	//**********************************************************
+	//Program: Keyin
+	//Reference: Session 20
+	//Topics:
+	// 1. Using the read() method of the ImputStream class
+//	    in the java.io package
+	// 2. Developing a class for performing basic console
+//	    input of character and numeric types
+	//**********************************************************
+	//**********************************************************
+
+	

@@ -1,0 +1,17 @@
+package com.game.Handlers;
+
+import java.util.LinkedList;
+
+public class Handler {
+	
+	LinkedList<Object> object = new LinkedList<Object>();
+	
+	public void tick()	{
+		
+	}
+	
+	public void render()	{
+		
+	}
+
+}
