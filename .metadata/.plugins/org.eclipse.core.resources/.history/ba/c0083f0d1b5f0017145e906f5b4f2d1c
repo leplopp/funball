@@ -1,8 +1,0 @@
-package com.game.index;
-
-public class Objects {
-	
-	protected int x, y;
-	protected float vleX = 0, vleY = 0;
-
-}
