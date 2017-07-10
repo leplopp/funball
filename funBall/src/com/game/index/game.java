@@ -11,7 +11,9 @@ import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Timer;
 
 import javax.swing.JFrame;
 
@@ -21,6 +23,7 @@ import com.game.controls.keyinput;
 import com.game.index.OBJ.Ball;
 import com.game.index.OBJ.Block;
 import com.game.index.OBJ.Box;
+import com.game.index.OBJ.Nastyballs;
 import com.game.index.graphics.Render;
 import com.game.index.graphics.Screen;
 import com.game.registers.BufferdimageLoader;
@@ -43,6 +46,29 @@ public class game extends Canvas implements Runnable{
 	protected ID id;
 	
 	private Camera camera;
+	private Random r;
+	
+	private java.util.Timer timer;
+	private boolean isRunning;
+	
+	public void gameLoop()
+	{
+	    timer = new Timer();
+	    timer.schedule(new LoopyStuff(), 0, 1000 / 60); //new timer at 60 fps, the timing mechanism
+	}
+	
+	private class LoopyStuff extends java.util.TimerTask
+	{
+	    public void run() //this becomes the loop
+	    {
+	        render();
+
+	        if (!isRunning)
+	        {
+	            timer.cancel();
+	        }
+	    }
+	}
 	
 	public game()	{
 		System.out.println(Height + "," + Width);
@@ -54,9 +80,11 @@ public class game extends Canvas implements Runnable{
 		handler = new Handler();
 		this.addMouseListener(new MouseInput(handler, camera));
 		this.addKeyListener(new keyinput(handler));
+		r = new Random();
+		
 		level = loader.lodImage("/testlevel.png");
 		
-		
+		handler.addobj(new Nastyballs(500, 100, ID.Ball));
 		handler.addobj(new Ball(100, 100, ID.player, handler));
 		LoadLevel(level);
 		
@@ -67,28 +95,23 @@ public class game extends Canvas implements Runnable{
 		
 	}
 	
-	private void start()	{
-		if (running) 
-			return;
-		running = true;
+	public synchronized void start()	{
 		therad = new Thread(this);
 		therad.start();
+		running = true;
 		
 		System.out.println("progress");
 	}
 	
-	private void stop()	{
-		if (!running)
-			return;
-		running = false;
+	public synchronized void stop()	{
 		try {
 		therad.join();
+		running = false;
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-
 	public void run() {
 		   while (running)	{
 			   tick();

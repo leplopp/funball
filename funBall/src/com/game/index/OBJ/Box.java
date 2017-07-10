@@ -13,6 +13,7 @@ public class Box extends Objects{
 	}
 
 	public void tick() {
+		
 		x += vleX;
 		y += vleY;
 		

@@ -8,7 +8,6 @@
 <fullyQualifiedTypeName name="java.awt.image.DirectColorModel"/>
 <fullyQualifiedTypeName name="com.game.index.Display"/>
 <fullyQualifiedTypeName name="com.game.index.graphics.Render"/>
-<fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="com.game.index.graphics.Screen"/>
 <fullyQualifiedTypeName name="java.awt.image.DataBufferInt"/>
 <fullyQualifiedTypeName name="java.awt.image.BufferStrategy"/>
@@ -22,7 +21,6 @@
 <fullyQualifiedTypeName name="com.game.registers.BufferdimageLoader"/>
 <fullyQualifiedTypeName name="java.awt.Rectangle"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
-<fullyQualifiedTypeName name="com.game.index.game"/>
 <fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
 <fullyQualifiedTypeName name="com.game.index.OBJ.Block"/>
 <fullyQualifiedTypeName name="com.game.util.ID"/>
@@ -34,8 +32,6 @@
 <fullyQualifiedTypeName name="java.awt.Graphics2D"/>
 <fullyQualifiedTypeName name="java.awt.Toolkit"/>
 <fullyQualifiedTypeName name="java.awt.DisplayMode"/>
-<fullyQualifiedTypeName name="com.game.index.OBJ.Objects"/>
-<fullyQualifiedTypeName name="com.game.Handlers.Handler"/>
 <fullyQualifiedTypeName name="com.game.registers.Levels"/>
 <fullyQualifiedTypeName name="java.awt.event.KeyAdapter"/>
 <fullyQualifiedTypeName name="com.game.controls.StartMenu"/>
@@ -44,4 +40,11 @@
 <fullyQualifiedTypeName name="com.game.index.OBJ.Bullet"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="com.game.index.OBJ.Objects"/>
+<fullyQualifiedTypeName name="com.game.index.OBJ.Nastyballs"/>
+<fullyQualifiedTypeName name="com.game.Handlers.Handler"/>
+<fullyQualifiedTypeName name="com.game.index.game"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="javax.management.timer.Timer"/>
+<fullyQualifiedTypeName name="java.util.Timer"/>
 </qualifiedTypeNameHistroy>
