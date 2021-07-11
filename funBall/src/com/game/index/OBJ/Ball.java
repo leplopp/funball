@@ -27,24 +27,24 @@ public class Ball extends Objects{
 		
 		//movement
 		if(handler.isUp()) 
-			vleY = -1;
+			vleY = -3;
 		else 
 			if(!handler.isDown()) 
 				vleY = 0;			
 		if(handler.isDown()) 
-			vleY = 1;
+			vleY = 3;
 		else 
 			if(!handler.isUp()) 
 			vleY = 0;
 		
 		if(handler.isRight()) 
-			vleX = 1;
+			vleX = 3;
 		else 
 			if(!handler.isLeft()) 
 			vleX = 0;
 		
 		if(handler.isLeft()) 
-			vleX = -1;
+			vleX = -3;
 		else 
 			if(!handler.isRight()) 
 			vleX = 0;
@@ -57,6 +57,14 @@ public class Ball extends Objects{
 			Objects tempobj = handler.object.get(i);
 			
 			if(tempobj.getId() == ID.Block)		{
+				
+				if(getBounds().intersects(tempobj.getBounds()))		{
+					x += vleX * -1;
+					y += vleY * -1;
+				}
+				
+			}
+	if(tempobj.getId() == ID.Ball)		{
 				
 				if(getBounds().intersects(tempobj.getBounds()))		{
 					x += vleX * -1;

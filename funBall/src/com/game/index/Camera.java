@@ -10,7 +10,6 @@ import com.game.index.OBJ.Objects;
 public class Camera {
 	
 
-	
 	private float x, y;
 	
 	public Camera(float x, float y)	 {
@@ -20,13 +19,13 @@ public class Camera {
 	
 	public void tick(Objects object)	{
 		
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize().getSize();
 
 	    final int screen_Width = dim.width;
 	    final int screen_Height = dim.height;
 
-		x += ((object.getX() - x) -screen_Width/2) * 0.05f;
-		y += ((object.getY() - y) -screen_Height/2) * 0.05f;
+		x += ((object.getX() - x) -screen_Width/2);
+		y += ((object.getY() - y) -screen_Height/2);
 		
 	}
 

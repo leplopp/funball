@@ -15,7 +15,9 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 
+import javax.print.DocFlavor.INPUT_STREAM;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import com.game.Handlers.Handler;
 import com.game.controls.MouseInput;
@@ -32,7 +34,7 @@ import com.game.util.ID;
 
 public class game extends Canvas implements Runnable{
 	
-	//private static final JFrame frame = new JFrame();
+	private static final JFrame frame = new JFrame();
 	private static final long serialVersionUID = 1L;
 	public static final String TITLE = "funBall v.0.0.1.0.2A";
 	
@@ -40,7 +42,8 @@ public class game extends Canvas implements Runnable{
 	private Thread therad;
 	private Render render;
 	private BufferedImage level;
-	private static int Width, Height ;
+	private Graphics2D g;
+	public static int Width, Height ;
 	
 	public Handler handler;
 	protected ID id;
@@ -51,24 +54,7 @@ public class game extends Canvas implements Runnable{
 	private java.util.Timer timer;
 	private boolean isRunning;
 	
-	public void gameLoop()
-	{
-	    timer = new Timer();
-	    timer.schedule(new LoopyStuff(), 0, 1000 / 60); //new timer at 60 fps, the timing mechanism
-	}
 	
-	private class LoopyStuff extends java.util.TimerTask
-	{
-	    public void run() //this becomes the loop
-	    {
-	        render();
-
-	        if (!isRunning)
-	        {
-	            timer.cancel();
-	        }
-	    }
-	}
 	
 	public game()	{
 		System.out.println(Height + "," + Width);
@@ -100,6 +86,8 @@ public class game extends Canvas implements Runnable{
 		therad.start();
 		running = true;
 		
+		level = new BufferedImage(Width, Height, BufferedImage.TYPE_INT_ARGB);
+		g = (Graphics2D) level.getGraphics();
 		System.out.println("progress");
 	}
 	
@@ -113,19 +101,79 @@ public class game extends Canvas implements Runnable{
 	}
 	
 	public void run() {
+		
+		final double GAME_HERTZ = 60.0;
+		final double TBU = 1000000000 / GAME_HERTZ; // time before update
+		
+		final int MJBR = 5; // must update before render
+		
+		double lastUpdateTime = System.nanoTime();
+		double lastRenderTime;
+		
+		final double Target_FPS = 60;
+		final double TTBR = 1000000000 / Target_FPS; //total time before render
+		
+		int frameCount = 0;
+		int lastSecondTime = (int) (lastUpdateTime / 1000000000);
+		int oldFrameCount = 0;
+		
 		   while (running)	{
-			   tick();
+			   
+			   double now = System.nanoTime();
+			   int updateCount = 0;
+			   while(((now - lastUpdateTime) >TBU) && (updateCount < MJBR)){
+				   tick();
+				   input();
+				   lastUpdateTime += TBU;
+				   updateCount++;
+			   }
+			   if (now -lastUpdateTime > TBU) {
+				   lastUpdateTime = now - TBU;
+			   }
+			   
+			   input();
 			   render();
+			   draw();
+			   lastRenderTime = now;
+			   frameCount++;
+			   
+			   int thisSecond = (int) (lastUpdateTime / 1000000000);
+			   if (thisSecond > lastSecondTime) {
+				   if(frameCount != oldFrameCount) {
+					   System.out.println("new Second " + thisSecond + " " + frameCount);
+					   oldFrameCount = frameCount;
+				   }
+				   
+				   frameCount = 0;
+				   lastSecondTime = thisSecond;
+			   }
+			   
+			   while(now - lastRenderTime < TTBR && now -lastUpdateTime < TBU) {
+				   Thread.yield();
+				   
+				   try {
+					   Thread.sleep(1);
+				   } catch (Exception e) {
+					   System.out.println("ERROR: yielding thread");
+				}
+				   now = System.nanoTime();
+			   }
+	   
 		   }
 			 
 	}
 	
+	public void input() {
+		
+	}
+
 	public void tick() {		
 		//System.out.println("Tick");
 		try {
-			therad.sleep(2);
+			Thread.sleep(1);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+			e.fillInStackTrace();
 		}
 		
 		for (int i = 0; i<handler.object.size(); i++)	{
@@ -138,30 +186,34 @@ public class game extends Canvas implements Runnable{
 	}
 
 	
-	private void render() {
-		BufferStrategy bs = this.getBufferStrategy();
-		if (bs == null){
-		createBufferStrategy(3);
-		return;
+	public void render() {
+		//BufferStrategy bs = this.getBufferStrategy();
+		//if (bs == null){
+		//createBufferStrategy(3);
+		if (g != null) {
 		
-	}
-	
-	Graphics g = bs.getDrawGraphics();
-	Graphics2D g2d = (Graphics2D) g;
+	//Graphics g = bs.getDrawGraphics();
+	//Graphics2D g2d = (Graphics2D) g;
 	
 	g.setColor(Color.cyan);
 	g.fillRect(0, 0, Width, Height);
 
-	g2d.translate(-camera.getX(), -camera.getY());
+	g.translate(-camera.getX(), -camera.getY());
 	
 	handler.render(g);
 	
-	g2d.translate(camera.getX(), camera.getY());
-	
-	g.dispose();
-	bs.show();	
+	g.translate(camera.getX(), camera.getY());
+		}
+	//g.dispose();
+	//g.show();	
 }
 	
+	public void draw() {
+		Graphics g2 = (Graphics) this.getGraphics();
+		g2.drawImage(level, 0, 0, Width, Height, null);
+		g2.dispose();
+		
+	}
 
 	    public void LoadLevel(BufferedImage image)	{
 		int w = image.getWidth();

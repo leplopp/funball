@@ -2,7 +2,6 @@ package com.game.Handlers;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
-
 import com.game.index.OBJ.Objects;
 import com.game.util.ID;
 
@@ -10,7 +9,7 @@ public class Handler {
 	
 	private int round = 0;
 	
-    public LinkedList<Objects> object = new LinkedList<Objects>();
+    public static LinkedList<Objects> object = new LinkedList<Objects>();
 	
 	private boolean up = false, down = false, right = false, left = false;
 
@@ -22,7 +21,7 @@ public class Handler {
 				  round++;
 			  else
 			  {
-				  round = 0;
+				  round = 10;
 				  tempobj.tick();
 			  }
 			else

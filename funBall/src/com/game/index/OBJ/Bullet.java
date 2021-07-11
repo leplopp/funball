@@ -29,8 +29,8 @@ public class Bullet extends Objects{
 		if (mY - y < 0)
 			  win = -win;
 		
-		vleX = (int)(6*Math.cos(win)); 		
-		vleY = (int)(6*Math.sin(win));
+		vleX = (int)(5*Math.cos(win)); 		
+		vleY = (int)(5*Math.sin(win));
 	}
 
 	public void tick() {
@@ -44,9 +44,15 @@ public class Bullet extends Objects{
 				if(getBounds().intersects(tempObj.getBounds()))		{
 					handler.removeobj(this);
 				}
+			
 				
 			}
-		}
+			 if(tempObj.getId() == ID.Ball)		{
+					
+					if(getBounds().intersects(tempObj.getBounds()))		{
+						handler.removeobj(this);
+					}
+			}}
 		
 	}
 	public void render(Graphics g) {

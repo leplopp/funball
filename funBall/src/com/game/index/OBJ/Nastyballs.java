@@ -9,9 +9,7 @@ import com.game.index.game;
 import com.game.util.ID;
 
 public class Nastyballs  extends Objects{
-	
 
-	
 	public Nastyballs(int x, int y , ID id) {
 		super(x, y, id);
 		
@@ -21,22 +19,31 @@ public class Nastyballs  extends Objects{
 
 	public void tick() {
 		
-		//collision();
+		collision();
 		x += vleX;
 		y += vleY;
 		
-		if (y <=0 || y >= game.HEIGHT - 32) vleY *= -1;
-		if (x <=0 || x >= game.WIDTH - 32) vleX *= -1;
+		if (y <=1 || y >= game.HEIGHT - 32) vleY *= 1;
+		if (x <=1 || x >= game.WIDTH - 32) vleX *= 1;
 		
 	}
 
 	
-	/*private void collision()	 {
-		for (int i = 0; i<handler.object.size(); i++)	{
+	public void collision()	 {
+		for (int i = 0; i<Handler.object.size(); i++)	{
 			
-			Objects tempobj = handler.object.get(i);
+			Objects tempobj = Handler.object.get(i);
 			
 			if(tempobj.getId() == ID.Block)		{
+				
+				if(getBounds().intersects(tempobj.getBounds()))		{
+					x += vleX * 0;
+					y += vleY * 0;
+				}
+				
+			}
+			
+if(tempobj.getId() == ID.player)		{
 				
 				if(getBounds().intersects(tempobj.getBounds()))		{
 					x += vleX * -1;
@@ -45,7 +52,7 @@ public class Nastyballs  extends Objects{
 				
 			}
 		}
-	}*/
+	}
 
 	public void render(Graphics g) {
 		
